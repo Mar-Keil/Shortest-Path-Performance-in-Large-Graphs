@@ -14,12 +14,10 @@ public class BFS {
         @SuppressWarnings("unchecked")
         List<Integer>[] list = new ArrayList[length];
 
-        // init (parallel ok)
         IntStream.range(0, length)
                 .parallel()
                 .forEach(i -> list[i] = new ArrayList<>());
 
-        // create edges (parallel ok: jeder Thread schreibt nur auf list[i])
         IntStream.range(0, length)
                 .parallel()
                 .forEach(i -> {
@@ -32,7 +30,7 @@ public class BFS {
                     }
                 });
 
-        // make edges bilateral (SEQUENTIAL to avoid races)
+        // make edges bilateral (SEQUENTIAL to avoid collision)
         for (int i = 0; i < length; i++) {
             List<Integer> li = list[i];
             for (int v : li) {
@@ -45,7 +43,6 @@ public class BFS {
             }
         }
 
-        // sort (parallel ok)
         IntStream.range(0, length)
                 .parallel()
                 .forEach(i -> list[i].sort(Integer::compare));

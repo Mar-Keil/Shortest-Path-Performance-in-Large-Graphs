@@ -8,7 +8,6 @@ public class SearchBFS {
 
     public int search(List<Integer>[] list, int target) {
 
-        // Sonderfall: Startknoten 0 ist das Ziel
         if (target == 0) {
             return 1; // 0 besucht und sofort gefunden
         }
@@ -32,13 +31,13 @@ public class SearchBFS {
                     visitedCount++;
 
                     if (v == target) {
-                        return visitedCount; // Schritte bis zum Fund
+                        return visitedCount;
                     }
                     q.add(v);
                 }
             }
         }
 
-        return -1; // nicht gefunden
+        return -1;
     }
 }

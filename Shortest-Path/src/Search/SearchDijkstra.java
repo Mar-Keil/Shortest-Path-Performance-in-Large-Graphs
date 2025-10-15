@@ -38,7 +38,6 @@ public class SearchDijkstra {
             visitedCount++;
 
             if (u == target) {
-                // Hier könnte man du als Distanz zurückmelden; gefordert ist nur "Schritte".
                 return visitedCount;
             }
 
@@ -48,8 +47,8 @@ public class SearchDijkstra {
             for (int[] edge : neighbors) {
                 int v = edge[0];
                 int w = edge[1];
-                if (v < 0 || v >= n) continue; // defensiv
-                if (w < 0) continue;           // Dijkstra verlangt nicht-negative Gewichte
+                if (v < 0 || v >= n) continue;
+                if (w < 0) continue;
 
                 long nd = du + w;
                 if (!visited[v] && nd < dist[v]) {
@@ -59,6 +58,6 @@ public class SearchDijkstra {
             }
         }
 
-        return -1; // nicht gefunden
+        return -1;
     }
 }
